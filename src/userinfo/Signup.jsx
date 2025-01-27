@@ -16,7 +16,8 @@ export default function Signup() {
         loading,
         createuser,
         loginuser,
-        logout, } = useContext(steadyContext)
+        logout, updateProfileData,
+        googleSignIn,} = useContext(steadyContext)
         const nav=useNavigate()
     const { register, handleSubmit } = useForm();
 
@@ -24,14 +25,22 @@ export default function Signup() {
         console.log(data);
         createuser(data.email, data.password)
             .then(res => {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Your account is ready to use",
-                    showConfirmButton: false,
-                    timer: 1500
+                updateProfileData({displayName:data.name,photoURL:data.photo})
+                .then(() => {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your account is ready to use",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    nav('/login')
+                })
+                .catch((error) => {
+                    console.log("Error updating user profile:", error);
                 });
-                nav('/login')
+                
+                
             }
             )
     };
@@ -41,7 +50,7 @@ export default function Signup() {
             <div className="w-full max-w-sm md:max-w-3xl">
                 <div className="flex flex-col gap-6">
                     <Card className="overflow-hidden">
-                        <CardContent className="grid p-0 md:grid-cols-2">
+                        <CardContent className="grid p-0 gap-8 md:grid-cols-2">
                             <form onSubmit={handleSubmit(onSubmit)} className="p-6 md:p-8">
                                 <div className="flex flex-col gap-6">
                                     <div className="flex flex-col items-center text-center">
