@@ -7,6 +7,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { steadyContext } from "../../authentication/Steadyprovider";
 import Lottie from "lottie-react";
 import booking from "../../../public/booking.json";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import axios from "axios";
+import Swal from "sweetalert2";
+import bg from '../../assets/bg.jpg'
 
 const BookParcelForm = () => {
   const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
@@ -20,15 +24,28 @@ const BookParcelForm = () => {
     else if (parcelWeight <= 2) setPrice(100);
     else setPrice(150);
   }, [parcelWeight]);
-
+const Axiossecure=useAxiosSecure()
   const onSubmit = (data) => {
     const bookingData = {
       ...data,
       price,
       status: "pending", // Default status
     };
-    console.log("Booking Data:", bookingData);
-    reset(); // Reset the form
+    console.log(bookingData)
+    
+    Axiossecure.post('/booking',bookingData)
+    .then(res=>{
+        
+        Swal.fire({
+            title: "Yay!Booking is done",
+            width: 600,
+            icon:'success',
+            padding: "3em",
+            color: "#0B6623",
+            background: `#fff `,
+          });
+    })
+    .catch(err=>{console.log(err)})
   };
 
   return (
