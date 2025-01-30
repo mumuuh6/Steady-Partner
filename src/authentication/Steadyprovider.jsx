@@ -1,19 +1,38 @@
 import { createContext, useEffect, useState } from 'react';
 import { auth } from './firebase.config';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import useAxiosPublic from '../mainpages/hooks/useAxiosPublic';
+import axios from 'axios';
 export const steadyContext = createContext(null)
 const Steadyprovider = ({ children }) => {
     const [user, setuser] = useState(null)
     const [loading, setloading] = useState(true)
+    const AxiosPublic=useAxiosPublic()
     useEffect(()=>{
         const unsubscribe=onAuthStateChanged(auth,currentuser=>{
             setuser(currentuser);
-            setloading(false)
+            if(currentuser){
+                const userInfo={email:currentuser.email}
+                AxiosPublic.post('/jwt',userInfo)
+                .then(res=>{
+                    if(res.data.token){
+                        localStorage.setItem('access-token',res.data.token)
+                        setloading(false)
+                    }
+                    
+                })
+            }
+            else{
+                localStorage.removeItem('access-token')
+                setloading(false)
+            }
+            
         })
         return ()=>{
             return unsubscribe()
         }
-    },[])
+    },[AxiosPublic])
+    
     const createuser=(email,password)=>{
         setloading(true);
         return createUserWithEmailAndPassword(auth,email,password)
@@ -29,14 +48,17 @@ const Steadyprovider = ({ children }) => {
         setloading(true)
         return signOut(auth)
     }
+    
+      
     const provider = new GoogleAuthProvider();
     const googleSignIn = () => {
-      setLoader(true);
-      return signInWithPopup(auth, provider).finally(() => setLoader(false));
+      setloading(true);
+      return signInWithPopup(auth, provider).finally(() => setloading(false));
     };
     const steadyinfo = {
         user, 
         loading,
+        
         updateProfileData,
         googleSignIn,
         createuser,

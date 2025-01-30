@@ -11,11 +11,30 @@ import { IoLogoGoogle } from "react-icons/io"
 import login from '../../public/Login.json'
 import Swal from "sweetalert2"
 import Lottie from "lottie-react"
+import useAxiosSecure from "../mainpages/hooks/useAxiosSecure"
 
 export default function Login() {
     const {register, handleSubmit, watch} = useForm();
-    const { user,loading,createuser,loginuser,logout, } = useContext(steadyContext)
+    const { user,loading,createuser,loginuser,logout,googleSignIn } = useContext(steadyContext)
     const nav=useNavigate()
+    const axiossecure=useAxiosSecure()
+    const handlegoogle = () => {
+        googleSignIn()
+            .then(res => {
+                const userInfo={
+                    email: res.user?.email,
+                    displayName:res.user?.displayName,
+                    photoURL:res.user?.photoURL,
+                    role:"user"
+                }
+                axiossecure.post('/user',userInfo)
+                .then(res=>{
+                    console.log(res.data)
+                    nav('/')
+                })
+            })
+    }
+    
     const onSubmit = (data) => {
         console.log(data)
        loginuser(data.email,data.password)
@@ -37,6 +56,7 @@ export default function Login() {
                 <div className="flex flex-col gap-6">
                     <Card className="overflow-hidden">
                         <CardContent className="grid p-0 gap-8 md:grid-cols-2">
+                            <div>
                             <form onSubmit={handleSubmit(onSubmit)} className="p-6 md:p-8">
                                 <div className="flex flex-col gap-6">
                                     <div className="flex flex-col items-center text-center">
@@ -83,8 +103,6 @@ export default function Login() {
                                         </span>
                                     </div>
                                     
-                                        <Button className="w-full"><Link className="flex items-center justify-center gap-2"><p>Signup with Google</p> <IoLogoGoogle></IoLogoGoogle></Link></Button>
-                                    
                                     <div className="text-center text-sm">
                                         Don&apos;t have an account?{" "}
                                         <Link to={`/signup`} className="underline underline-offset-4">
@@ -93,6 +111,14 @@ export default function Login() {
                                     </div>
                                 </div>
                             </form>
+                            <div className="text-center text-sm p-6 md:p-8">
+                                    <button onClick={handlegoogle} className="w-full rounded-lg h-9 px-4 py-2 bg-black text-white font-semibold shadow hover:bg-white hover:text-black flex items-center justify-center gap-2 mb-2"><p>Signup with Google</p> <IoLogoGoogle></IoLogoGoogle></button>
+                                    Already have an account?{" "}
+                                    <Link to={`/login`} className="underline underline-offset-4">
+                                        Login Now!
+                                    </Link>
+                                </div>
+                            </div>
                             <div className="relative  flex justify-center items-center h-full">
                                 <Lottie animationData={login}></Lottie>
                             </div>

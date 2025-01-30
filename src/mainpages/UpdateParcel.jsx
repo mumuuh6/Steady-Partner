@@ -4,19 +4,22 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { steadyContext } from "../../authentication/Steadyprovider";
+import { steadyContext } from "../authentication/Steadyprovider";
 import Lottie from "lottie-react";
-import booking from "../../../public/booking.json";
-import useAxiosSecure from "../hooks/useAxiosSecure";
+import booking from "../../public/booking.json";
+import useAxiosSecure from "./hooks/useAxiosSecure";
 import axios from "axios";
 import Swal from "sweetalert2";
-import bg from '../../assets/bg.jpg'
+import bg from '../assets/bg.jpg'
+import { useNavigate, useParams } from "react-router-dom";
 
-const BookParcelForm = () => {
+const UpdateParcel = () => {
+  const {id}=useParams();
+  
   const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
   const [price, setPrice] = useState(0);
   const { user } = useContext(steadyContext);
-
+  const nav = useNavigate()
   // Watch parcel weight to auto-calculate the price
   const parcelWeight = watch("parcelWeight");
   useEffect(() => {
@@ -44,22 +47,26 @@ const BookParcelForm = () => {
       status: "pending",  // Default status
       bookingDate: currentDate,  // Booking date is set to today's date
       approximatedDeliveryDate,
-      deliverymanid:'unassigned'  // Add approximated delivery date
+      deliverymanid: 'unassigned'  // Add approximated delivery date
     };
 
     console.log(bookingData);
-    
-    Axiossecure.post('/booking', bookingData)
+
+    Axiossecure.put(`/booking/${id}`, bookingData)
       .then(res => {
+        console.log(bookingData,res.data)
         Swal.fire({
-          title: "Yay! Booking is done",
+          title: "Yay! Parcel updated",
           width: 600,
           icon: 'success',
           padding: "3em",
           color: "#0B6623",
           background: `#fff`,
         });
-        reset();  // Reset form after submission
+
+        reset();
+        // Reset form after submission
+        nav('/myparcel')
       })
       .catch(err => {
         console.log(err);
@@ -76,7 +83,7 @@ const BookParcelForm = () => {
       </div>
 
       {/* Title */}
-      <h1 className="text-3xl font-bold text-center mb-6">Book a Parcel</h1>
+      <h1 className="text-3xl font-bold text-center mb-6">Update a Parcel</h1>
 
       {/* Form */}
       <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -248,4 +255,4 @@ const BookParcelForm = () => {
   );
 };
 
-export default BookParcelForm;
+export default UpdateParcel;

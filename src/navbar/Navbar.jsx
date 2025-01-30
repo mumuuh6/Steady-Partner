@@ -46,12 +46,14 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { FaTruckRampBox } from "react-icons/fa6";
 
 import { IoMdNotifications } from "react-icons/io";
 import Logo from '../assets/logo.jpg'
 import { Link } from "react-router-dom";
 import { steadyContext } from "../authentication/Steadyprovider";
 import { useContext } from "react";
+import { FaShippingFast, FaTruckPickup } from "react-icons/fa"
 
 const Navbar = () => {
 
@@ -61,6 +63,7 @@ const Navbar = () => {
             .then(res => { console.log('successful logout') })
             .catch(err => { console.log(err) })
     }
+    
 
     const Links = <>
         <MenubarMenu>
@@ -80,7 +83,7 @@ const Navbar = () => {
                                 </Avatar>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className="w-56">
-                            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                            <DropdownMenuLabel><Link to={`myprofile`}>My Profile</Link></DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuGroup>
                                 <DropdownMenuItem>
@@ -90,9 +93,26 @@ const Navbar = () => {
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
                                     <CreditCard />
-                                    <span>Dashboard</span>
+                                    <Link to={`/dashboard`}>DASHBOARD</Link>
                                     <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
                                 </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <FaShippingFast></FaShippingFast>
+                                    <Link to={`booking`}>BOOK?ADD PARCEL</Link>
+                                    <DropdownMenuShortcut>⌘P</DropdownMenuShortcut>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <FaTruckRampBox></FaTruckRampBox>
+                                    <Link to={`myparcel`}>MY PARCEL</Link>
+                                    <DropdownMenuShortcut>⌘P</DropdownMenuShortcut>
+                                </DropdownMenuItem>
+                                
+                                    <DropdownMenuItem>
+                                    <FaTruckRampBox></FaTruckRampBox>
+                                    <Link to={`/`}>Allusers</Link>
+                                    <DropdownMenuShortcut>⌘P</DropdownMenuShortcut>
+                                </DropdownMenuItem>
+                                    
                                 
                             </DropdownMenuGroup>
                             <DropdownMenuSeparator />
@@ -108,7 +128,7 @@ const Navbar = () => {
                 :
                 <>
                     <MenubarMenu>
-                        <MenubarTrigger ><Link to={`/login`} className="bg-black text-white shadow rounded-xl hover:bg-white hover:text-black h-9 px-4 py-2">Login</Link></MenubarTrigger>
+                        <MenubarTrigger ><Link to={`login`} className="bg-black text-white shadow rounded-xl hover:bg-white hover:text-black h-9 px-4 py-2">Login</Link></MenubarTrigger>
                     </MenubarMenu></>
         }
 
