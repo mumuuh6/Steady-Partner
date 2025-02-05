@@ -1,5 +1,7 @@
 # 📦 Parcel Management System
 
+![Parcel Management System Banner](./banner.png)
+
 A fully functional **Parcel Management System** built with the **MERN stack**. This platform allows users to book parcels for delivery, admins to assign delivery personnel, and delivery personnel to manage and complete deliveries.
 
 ## ✨ Features
