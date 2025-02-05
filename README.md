@@ -31,7 +31,7 @@ A fully functional **Parcel Management System** built with the **MERN stack**. T
 
 🔗 **Live Site URL**: [https://ugly-limit.surge.sh/](https://ugly-limit.surge.sh/)
 
-## 📌 Notable Implementations
+## 📌 Technologies Used
 
 - **🔥 ShadCN UI** for beautiful and modern UI components.
 - **⚡ React Hook Form** for smooth form handling and validation.
@@ -64,6 +64,32 @@ A fully functional **Parcel Management System** built with the **MERN stack**. T
 - 📅 **Date Filtering**: Admins can filter bookings within a date range.
 - 🌟 **Top Delivery Men**: Display high-performing delivery personnel.
 - 💰 **Payment System**: Users can mark parcels as paid.
+
+---
+## 📦 Dependencies
+
+### **Frontend**:
+- `React` - A JavaScript library for building user interfaces.
+- `React Router DOM` - A library for routing in React applications.
+- `Axios` - Promise-based HTTP client for making API requests.
+- `React Leaflet` - Map integration for parcel tracking.
+- `React ApexCharts` - For data visualization (charts).
+- `Redux` - State management tool for React apps.
+- `Material-UI` - A React UI framework for responsive design.
+- `React Hook Form` - Library for managing form validation and data.
+
+### **Backend**:
+- `Node.js` - JavaScript runtime used for the backend.
+- `Express.js` - Web application framework for Node.js.
+- `MongoDB` - NoSQL database for storing user and parcel data.
+- `Mongoose` - MongoDB object modeling tool for Node.js.
+- `JWT` - JSON Web Token for secure authentication.
+- `bcryptjs` - Library for password hashing and security.
+- `dotenv` - Loads environment variables for configuration.
+- `cors` - Middleware to enable cross-origin requests.
+
+### **Development**:
+- `Nodemon` - Tool that helps during development by automatically restarting the server when changes are made.
 
 ---
 
