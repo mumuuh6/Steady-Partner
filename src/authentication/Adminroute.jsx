@@ -15,7 +15,7 @@ const Adminroute = ({children}) => {
         }
     return (
         <div>
-             <Navigate to='/login'>g</Navigate>
+             <Navigate to='/login'></Navigate>
         </div>
     );
 };
