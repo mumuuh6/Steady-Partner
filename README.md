@@ -4,7 +4,7 @@
 
 A fully functional **Parcel Management System** built with the **MERN stack**. This platform allows users to book parcels for delivery, admins to assign delivery personnel, and delivery personnel to manage and complete deliveries.
 
-## ✨ Features
+## ✨ Features 
 
 - 📌 **User Authentication**: Secure login and registration with Firebase (includes Google login).
 - 🔄 **Role-Based Access**: Three user roles – **User**, **Delivery Men**, and **Admin**.
