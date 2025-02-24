@@ -21,6 +21,8 @@ export default function Signup() {
         googleSignIn, } = useContext(steadyContext)
     const nav = useNavigate()
     const { register, handleSubmit } = useForm();
+    
+    const axiossecure = useAxiosSecure()
     const handlegoogle = () => {
         googleSignIn()
             .then(res => {
@@ -37,11 +39,8 @@ export default function Signup() {
                     })
             })
     }
-    const axiossecure = useAxiosSecure()
     const onSubmit = (data) => {
         const { password, ...newdata } = data;
-
-
         console.log(newdata);
         createuser(data.email, data.password)
             .then(res => {

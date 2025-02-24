@@ -79,7 +79,7 @@ console.log(deliveryMan)
         <div className="container mx-auto p-6">
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-xl font-bold">User List ({userinfos.length})</CardTitle>
+                    <CardTitle className="text-xl font-bold">Parcel List ({userinfos.length})</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <Table>

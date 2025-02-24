@@ -1,6 +1,5 @@
 import {
     createBrowserRouter,
-    RouterProvider,
   } from "react-router-dom";
 import App from "../App";
 import Signup from "../userinfo/Signup";
@@ -23,6 +22,8 @@ import MyReviews from "../mainpages/MyReviews";
 import UserRoute from "../authentication/UserRoute";
 import Adminroute from "../authentication/Adminroute";
 import Driverroute from "../authentication/Driverroute";
+import ContactPage from "../userinfo/ConractPage";
+import AboutPage from "../userinfo/AboutPage";
   
   
   const router = createBrowserRouter([
@@ -45,7 +46,15 @@ import Driverroute from "../authentication/Driverroute";
         },
         {
             path:'booking',
-            element:<BookParcelForm></BookParcelForm>
+            element:<UserRoute><BookParcelForm></BookParcelForm></UserRoute>
+        },
+        {
+            path:'contact',
+            element:<ContactPage></ContactPage>
+        },
+        {
+            path:'about',
+            element:<AboutPage></AboutPage>
         },
         {
             path:'myparcel',
@@ -60,7 +69,30 @@ import Driverroute from "../authentication/Driverroute";
             path:'myprofile',
             element:<UserRoute><UserProfile></UserProfile></UserRoute>
         },
-        
+        {
+            path:'users',
+            element:<Adminroute><Allusers></Allusers></Adminroute>
+        },
+        {
+            path:'driver',
+            element:<Adminroute><AllDriver></AllDriver></Adminroute>
+        },
+        {
+            path:'allparcel',
+            element:<Adminroute><Allparcel></Allparcel></Adminroute>
+        },
+        {
+            path:'adminstatistics',
+            element:<Adminroute><Adminstatistics></Adminstatistics></Adminroute>
+        },
+        {
+            path:'alldeliveredparcel',
+            element:<Driverroute><Alldeliveredparcel></Alldeliveredparcel></Driverroute>
+        },
+        {
+            path:'myreviews',
+            element:<Driverroute><MyReviews></MyReviews></Driverroute>
+        },
         
       ]
     },
@@ -68,7 +100,7 @@ import Driverroute from "../authentication/Driverroute";
         path:'dashboard',
         element:<Dahsboard></Dahsboard>,
         children:[
-            {
+        {
             path:'users',
             element:<Adminroute><Allusers></Allusers></Adminroute>
         },

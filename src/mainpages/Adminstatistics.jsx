@@ -45,7 +45,7 @@ const Adminstatistics = () => {
                     <CardTitle className="text-xl font-bold">Statistics</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Chart options={barChartOptions} series={chartData.series} type="bar" height={350} />
+                    <Chart options={barChartOptions} className='bg-green-200 ' series={chartData.series} type="bar" height={350} />
                 </CardContent>
             </Card>
         </div>

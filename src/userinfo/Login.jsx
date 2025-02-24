@@ -49,7 +49,6 @@ export default function Login() {
           nav('/')
     })
     }
-    
     return (
         <div className="flex min-h-screen flex-col items-center justify-center p-6 md:p-10">
             <div className="w-full max-w-sm md:max-w-3xl">
@@ -102,20 +101,13 @@ export default function Login() {
                                             Or continue with
                                         </span>
                                     </div>
-                                    
-                                    <div className="text-center text-sm">
-                                        Don&apos;t have an account?{" "}
-                                        <Link to={`/signup`} className="underline underline-offset-4">
-                                            Sign up
-                                        </Link>
-                                    </div>
                                 </div>
                             </form>
                             <div className="text-center text-sm p-6 md:p-8">
                                     <button onClick={handlegoogle} className="w-full rounded-lg h-9 px-4 py-2 bg-black text-white font-semibold shadow hover:bg-white hover:text-black flex items-center justify-center gap-2 mb-2"><p>Signup with Google</p> <IoLogoGoogle></IoLogoGoogle></button>
-                                    Already have an account?{" "}
-                                    <Link to={`/login`} className="underline underline-offset-4">
-                                        Login Now!
+                                    Dont have an account?{" "}
+                                    <Link to={`/signup`} className="underline underline-offset-4">
+                                        SignUp Now!
                                     </Link>
                                 </div>
                             </div>

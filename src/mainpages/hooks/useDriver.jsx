@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 import { useContext } from 'react';
 import { steadyContext } from '../../authentication/Steadyprovider';
 import useAxiosSecure from './useAxiosSecure';
@@ -7,7 +6,7 @@ import useAxiosSecure from './useAxiosSecure';
 const useDriver = () => {
     const axiossecure=useAxiosSecure()
     const {user}=useContext(steadyContext)
-    console.log(user?.email)
+    console.log(user)
     const {data:isDriver,isPending:isDriverLoading}=useQuery({
         queryKey:[user?.email,'isDriver'],
         queryFn:async()=>{

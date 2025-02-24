@@ -3,11 +3,13 @@ import { auth } from './firebase.config';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import useAxiosPublic from '../mainpages/hooks/useAxiosPublic';
 import axios from 'axios';
+import useAxiosSecure from '../mainpages/hooks/useAxiosSecure';
 export const steadyContext = createContext(null)
 const Steadyprovider = ({ children }) => {
     const [user, setuser] = useState(null)
     const [loading, setloading] = useState(true)
-    const AxiosPublic=useAxiosPublic()
+    const AxiosPublic=useAxiosPublic();
+    //const axiossecure=useAxiosSecure();
     useEffect(()=>{
         const unsubscribe=onAuthStateChanged(auth,currentuser=>{
             setuser(currentuser);
