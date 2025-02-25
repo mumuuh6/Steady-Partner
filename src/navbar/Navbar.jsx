@@ -73,6 +73,7 @@ const Navbar = () => {
     const axiossecure = useAxiosSecure()
     axiossecure.get(`/user/${user?.email}`)
         .then(res => setrole(res.data[0].role))
+        console.log(role)
     const Links = <>
         <MenubarMenu>
             <MenubarTrigger className='hidden md:block'><Link to={`/`} className="bg-black text-white shadow rounded-xl hover:bg-white hover:text-black h-9 px-4 py-2">Home</Link></MenubarTrigger>

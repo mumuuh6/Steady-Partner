@@ -5,7 +5,7 @@ import { steadyContext } from "../../authentication/Steadyprovider";
 
 
 export const axiosSecure=axios.create({
-    baseURL:'http://localhost:5000'
+    baseURL:'https://steady-partner-server-side.vercel.app'
 
     // steady-partner-server-side.vercel.app
 })
@@ -24,7 +24,7 @@ const useAxiosSecure = () => {
     axiosSecure.interceptors.response.use(function(response){
         return response
     },async(error)=>{
-        const status=error.response.status
+        const status=error.response?.status
         if(status===401){
             await logout()
             console.log('tata')
